@@ -17,8 +17,9 @@
 
 
 
-#include <stdlib.h>
-#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 #include <string.h>
 
 #include <stdarg.h>
@@ -363,9 +364,11 @@ void I_Error (char *error, ...)
     atexit_listentry_t *entry;
     boolean exit_gui_popup;
 
+    printf("I_Error called: %s", error);
+
     if (already_quitting)
     {
-        fprintf(stderr, "Warning: recursive call to I_Error detected.\n");
+        printf(/*stderr,*/ "Warning: recursive call to I_Error detected.\n");
 #if ORIGCODE
         exit(-1);
 #endif
@@ -377,11 +380,12 @@ void I_Error (char *error, ...)
 
     // Message first.
     va_start(argptr, error);
-    //fprintf(stderr, "\nError: ");
-    vfprintf(stderr, error, argptr);
-    fprintf(stderr, "\n\n");
+    //fprintf(/*stderr,*/ "\nError: ");
+    printf(/*stderr,*/ "\nError: ");
+    //vprint(/*stderr,*/ error, argptr);
+    printf(/*stderr,*/ "\n\n");
     va_end(argptr);
-    fflush(stderr);
+    //fflush(stderr);
 
     // Write a copy of the message into buffer.
     va_start(argptr, error);
@@ -403,6 +407,8 @@ void I_Error (char *error, ...)
         entry = entry->next;
     }
 
+    printf("Made it here\n");
+
     exit_gui_popup = !M_ParmExists("-nogui");
 
     // Pop up a GUI dialog box to show the error message, if the
@@ -411,13 +417,15 @@ void I_Error (char *error, ...)
     if (exit_gui_popup && !I_ConsoleStdout())
 #ifdef _WIN32
     {
+        printf("Well this is bad\n");
         wchar_t wmsgbuf[512];
 
-        MultiByteToWideChar(CP_ACP, 0,
+        /*MultiByteToWideChar(CP_ACP, 0,
                             msgbuf, strlen(msgbuf) + 1,
-                            wmsgbuf, sizeof(wmsgbuf));
+                            wmsgbuf, sizeof(wmsgbuf));*/
 
-        MessageBoxW(NULL, wmsgbuf, L"", MB_OK);
+        // Hilarious; this will actually compile
+        //MessageBoxW(NULL, wmsgbuf, L"", MB_OK);
     }
 #elif defined(__MACOSX__)
     {
@@ -460,9 +468,11 @@ void I_Error (char *error, ...)
 
     exit(-1);
 #else
-    while (true)
+    /*while (true)
     {
-    }
+        printf("Hmmm....\n");
+    }*/
+    exit(-1);
 #endif
 }
 

@@ -20,8 +20,9 @@
 #include "SDL_joystick.h"
 #endif
 
-#include <stdlib.h>
-#include <stdio.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 #include <string.h>
 
 #include "doomtype.h"

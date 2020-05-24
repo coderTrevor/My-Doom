@@ -1,3 +1,5 @@
+Readme from doomgeneric:
+
 ================
 = doomgeneric =
 ================

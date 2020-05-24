@@ -17,7 +17,8 @@
 //	generation of lookups, caching, retrieval by name.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "deh_main.h"
 #include "i_swap.h"
@@ -482,7 +483,7 @@ void R_InitTextures (void)
     int			temp2;
     int			temp3;
 
-    
+    printf("R_InitTextures called\n");
     // Load the patch names from pnames.lmp.
     name[8] = 0;
     names = W_CacheLumpName (DEH_String("PNAMES"), PU_STATIC);

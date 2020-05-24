@@ -22,7 +22,9 @@
 
 
 
-#include <stdlib.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 
 #include "m_bbox.h"

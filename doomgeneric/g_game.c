@@ -18,7 +18,9 @@
 
 
 #include <string.h>
-#include <stdlib.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <math.h>
 
 #include "doomdef.h" 
@@ -1609,7 +1611,9 @@ G_SaveGame
 
 void G_DoSaveGame (void) 
 { 
-    char *savegame_file;
+    printf("Saves aren't supported on MyOS\n");
+    return;
+    /*char *savegame_file;
     char *temp_savegame_file;
     char *recovery_savegame_file;
 
@@ -1682,6 +1686,7 @@ void G_DoSaveGame (void)
 
     // draw the pattern into the back screen
     R_FillBackScreen ();	
+    */
 } 
  
 

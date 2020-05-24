@@ -1,37 +1,12 @@
-# doomgeneric
-The purpose of doomgeneric is to make porting Doom easier.
-Of course Doom is already portable but with doomgeneric it is possible with just a few functions.
-The limitation is there is no sound!
+# My-Doom
+This is simply doomgeneric ported to My OS. See https://github.com/ozkl/doomgeneric for more info about doomgeneric. It's an excellent place to start for us hobbyist OS developers!
 
-To try it you will need a WAD file (game data). If you don't own the game, shareware version is freely available (doom1.wad).
+This port has **everything** that isn't completely necessary for the game to run ripped out of it. fprintf()? Nope. fwrite()? What for? stdio? How about no. ... You get the idea.
 
-# porting
-Create a file named doomgeneric_yourplatform.c and just implement these functions to suit your platform.
-* DG_Init
-* DG_DrawFrame
-* DG_SleepMs
-* DG_GetTicksMs
-* DG_GetKey
+Nearly every bug that MyOS has (like fopen returning NULL) was hastily worked around instead of being fixed to get this port running ASAP.
 
-|Functions            |Description|
-|---------------------|-----------|
-|DG_Init              |Initialize your platfrom (create window, framebuffer, etc...).
-|DG_DrawFrame         |Frame is ready in DG_ScreenBuffer. Copy it to your platform's screen.
-|DG_SleepMs           |Sleep in milliseconds.
-|DG_GetTicksMs        |The ticks passed since launch in milliseconds.
-|DG_GetKey            |Provide keyboard events.
-|DG_SetWindowTitle    |Not required. This is for setting the window title as Doom sets this from WAD file.
+MyOS doesn't like it when the game looks for every possible .wad file, so this port only looks for "doom.wad." You can rename the shareware version from doom1.wad to doom.wad and it will work.
 
-# platforms
-I have ported to Windows, X11, and Soso. Just look at (doomgeneric_win.c or doomgeneric_xlib.c).
+As of the first commit, keyboard input hasn't been implemented, the game just runs and shows demos.
 
-Note that X11 port is not efficient since it generates pixmap by XDrawPoint. It can be further improved by using X11 extensions.
-
-## Windows
-![Windows](screenshots/windows.png)
-
-## X11 - Ubuntu
-![Ubuntu](screenshots/ubuntu.png)
-
-## X11 - FreeBSD
-![FreeBSD](screenshots/freebsd.png)
+There's a bug somewhere that causes the game to crash when updating the arms display; I've kept the display from getting updated for now.

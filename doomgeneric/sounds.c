@@ -18,7 +18,9 @@
 //
 
 
-#include <stdlib.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 
 #include "doomtype.h"

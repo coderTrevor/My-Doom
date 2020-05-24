@@ -20,7 +20,8 @@
 
 
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "i_system.h"
 #include "i_video.h"
@@ -1021,7 +1022,7 @@ void ST_drawWidgets(boolean refresh)
 
     STlib_updateBinIcon(&w_armsbg, refresh);
 
-    for (i=0;i<6;i++)
+    for (i=1;i<6;i++)
 	STlib_updateMultIcon(&w_arms[i], refresh);
 
     STlib_updateMultIcon(&w_faces, refresh);
@@ -1085,11 +1086,17 @@ static void ST_loadUnloadGraphics(load_callback_t callback)
     // Load the numbers, tall and short
     for (i=0;i<10;i++)
     {
-	DEH_snprintf(namebuf, 9, "STTNUM%d", i);
-        callback(namebuf, &tallnum[i]);
+	    DEH_snprintf(namebuf, 9, "STTNUM%d", i);
+        {
+            callback(namebuf, &tallnum[i]);
+            printf("%s\n", namebuf);
+        }
 
-	DEH_snprintf(namebuf, 9, "STYSNUM%d", i);
-        callback(namebuf, &shortnum[i]);
+	    DEH_snprintf(namebuf, 9, "STYSNUM%d", i);
+        {
+            callback(namebuf, &shortnum[i]);
+            printf("%s\n", namebuf);
+        }
     }
 
     // Load percent key.
@@ -1111,6 +1118,7 @@ static void ST_loadUnloadGraphics(load_callback_t callback)
     for (i=0; i<6; i++)
     {
     	DEH_snprintf(namebuf, 9, "STGNUM%d", i+2);
+        printf("%s\n", namebuf);
 
     	// gray #
         callback(namebuf, &arms[i][0]);

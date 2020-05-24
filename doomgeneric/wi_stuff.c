@@ -17,7 +17,8 @@
 //
 
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "z_zone.h"
 

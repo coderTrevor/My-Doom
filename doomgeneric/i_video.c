@@ -25,6 +25,7 @@
 static const char
 rcsid[] = "$Id: i_x.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 
+#include "doomgeneric.h"
 #include "config.h"
 #include "v_video.h"
 #include "m_argv.h"
@@ -36,16 +37,15 @@ rcsid[] = "$Id: i_x.c,v 1.6 1997/02/03 22:45:10 b1 Exp $";
 #include "tables.h"
 #include "doomkeys.h"
 
-#include "doomgeneric.h"
 
-#include <stdbool.h>
+/*#include <stdbool.h>
 #include <stdlib.h>
 
 #include <fcntl.h>
 
 #include <stdarg.h>
 
-#include <sys/types.h>
+#include <sys/types.h>*/
 
 //#define CMAP256
 

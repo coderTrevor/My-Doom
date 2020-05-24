@@ -4,12 +4,12 @@
 #include "m_argv.h"
 #include "doomgeneric.h"
 
-#include <stdio.h>
+/*#include <stdio.h>
 #include <fcntl.h>
-#include <unistd.h>
+#include <unistd.h>*/
 
-#include <sosousdk.h>
-#include "../kernel/termios.h"
+//#include <sosousdk.h>
+//#include "../kernel/termios.h"
 
 static int FrameBufferFd = -1;
 static int* FrameBuffer = 0;

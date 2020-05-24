@@ -16,7 +16,8 @@
 //	Plats (i.e. elevator platforms) code, raising/lowering.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "i_system.h"
 #include "z_zone.h"

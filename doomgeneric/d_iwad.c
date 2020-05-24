@@ -16,8 +16,9 @@
 //     to the IWAD type.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
+//#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -34,10 +35,10 @@
 
 static const iwad_t iwads[] =
 {
-    { "doom2.wad",    doom2,     commercial, "Doom II" },
+    { "doom.wad",     doom,      retail,     "Doom" }
+   /* { "doom2.wad",    doom2,     commercial, "Doom II" },
     { "plutonia.wad", pack_plut, commercial, "Final Doom: Plutonia Experiment" },
     { "tnt.wad",      pack_tnt,  commercial, "Final Doom: TNT: Evilution" },
-    { "doom.wad",     doom,      retail,     "Doom" },
     { "DOOM1.WAD",    doom,      shareware,  "Doom Shareware" },
     { "chex.wad",     pack_chex, shareware,  "Chex Quest" },
     { "hacx.wad",     pack_hacx, commercial, "Hacx" },
@@ -48,7 +49,7 @@ static const iwad_t iwads[] =
     { "heretic1.wad", heretic,   shareware,  "Heretic Shareware" },
     { "hexen.wad",    hexen,     commercial, "Hexen" },
     //{ "strife0.wad",  strife,    commercial, "Strife" }, // haleyjd: STRIFE-FIXME
-    { "strife1.wad",  strife,    commercial, "Strife" },
+    { "strife1.wad",  strife,    commercial, "Strife" },*/
 };
 
 // Array of locations to search for IWAD files
@@ -423,6 +424,7 @@ static char *CheckDirectoryHasIWAD(char *dir, char *iwadname)
     if (!strcmp(dir, "."))
     {
         filename = strdup(iwadname);
+        printf("duped file: %s\n", filename);
     }
     else
     {
@@ -433,8 +435,11 @@ static char *CheckDirectoryHasIWAD(char *dir, char *iwadname)
 
     if (M_FileExists(filename))
     {
+        printf("existing file: %s\n", filename);
         return filename;
     }
+
+    printf("M_FileExists(%s) was false.\n", filename);
 
     free(filename);
 
@@ -457,7 +462,7 @@ static char *SearchDirectoryForIWAD(char *dir, int mask, GameMission_t *mission)
         }
 
         filename = CheckDirectoryHasIWAD(dir, DEH_String(iwads[i].name));
-
+        printf("filename: %s", filename);
         if (filename != NULL)
         {
             *mission = iwads[i].mission;
@@ -746,6 +751,8 @@ char *D_FindIWAD(int mask, GameMission_t *mission)
             result = SearchDirectoryForIWAD(iwad_dirs[i], mask, mission);
         }
     }
+
+    printf("\n\nFound %s\n\n", result);
 
     return result;
 }

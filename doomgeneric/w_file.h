@@ -20,7 +20,8 @@
 #ifndef __W_FILE__
 #define __W_FILE__
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 #include "doomtype.h"
 
 typedef struct _wad_file_s wad_file_t;

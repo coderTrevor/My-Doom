@@ -19,8 +19,10 @@
 
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+ //#include <stdio.h>
+ //#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <string.h>
 
 #include "d_player.h"

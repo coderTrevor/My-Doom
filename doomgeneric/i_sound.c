@@ -15,8 +15,10 @@
 // DESCRIPTION:  none
 //
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 #ifdef ORIGCODE
 #include "SDL_mixer.h"

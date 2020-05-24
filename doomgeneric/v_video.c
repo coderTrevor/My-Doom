@@ -19,7 +19,8 @@
 //	Functions to blit a block to the screen.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 #include <string.h>
 #include <math.h>
 
@@ -145,6 +146,8 @@ void V_DrawPatch(int x, int y, patch_t *patch)
     byte *dest;
     byte *source;
     int w;
+
+    //printf("V_DP ");
 
     y -= SHORT(patch->topoffset);
     x -= SHORT(patch->leftoffset);
@@ -865,7 +868,11 @@ void V_DrawMouseSpeedBox(int speed)
     // If the mouse is turned off or acceleration is turned off, don't
     // draw the box at all.
 
-    if (!usemouse || fabs(mouse_acceleration - 1) < 0.01)
+    float absM = mouse_acceleration - 1;
+    if (absM < 0)
+        absM = -absM;
+
+    if (!usemouse || absM < 0.01)
     {
         return;
     }

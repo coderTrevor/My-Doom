@@ -18,7 +18,9 @@
 //
 
 
-#include <stdlib.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <ctype.h>
 
 
@@ -967,7 +969,7 @@ void M_Episode(int choice)
     if ( (gamemode == registered)
 	 && (choice > 2))
     {
-      fprintf( stderr,
+      printf( /*stderr,*/
 	       "M_Episode: 4th episode requires UltimateDOOM\n");
       choice = 0;
     }

@@ -1,10 +1,15 @@
 #ifndef DOOM_GENERIC
 #define DOOM_GENERIC
 
+#include "../../MyOS_1/Console_VGA.h"
+#include "../../MyOS_1/Interrupts/System_Calls.h"
+#include "../../MyOS_1/paging.h"
+#include "../../MyOS_1/misc.h"
+#include "../../MyOS_1/printf.h"
 #include <stdint.h>
 
-#define DOOMGENERIC_RESX 640
-#define DOOMGENERIC_RESY 400
+#define DOOMGENERIC_RESX 800
+#define DOOMGENERIC_RESY 480
 
 
 extern uint32_t* DG_ScreenBuffer;

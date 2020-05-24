@@ -18,8 +18,10 @@
 //
 
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
@@ -1715,6 +1717,8 @@ static void SaveDefaultCollection(default_collection_t *collection)
 
 static int ParseIntParameter(char *strparm)
 {
+    printf("\n\nParseIntParameter called\n\n");
+    return 0;/*
     int parm;
 
     if (strparm[0] == '0' && strparm[1] == 'x')
@@ -1722,52 +1726,54 @@ static int ParseIntParameter(char *strparm)
     else
         sscanf(strparm, "%i", &parm);
 
-    return parm;
+    return parm;*/
 }
 
 static void SetVariable(default_t *def, char *value)
 {
+    printf("\n\nSetVariable called\n\n");
+    /*
     int intparm;
 
     // parameter found
 
     switch (def->type)
     {
-        case DEFAULT_STRING:
-            * (char **) def->location = strdup(value);
-            break;
+    case DEFAULT_STRING:
+    * (char **) def->location = strdup(value);
+    break;
 
-        case DEFAULT_INT:
-        case DEFAULT_INT_HEX:
-            * (int *) def->location = ParseIntParameter(value);
-            break;
+    case DEFAULT_INT:
+    case DEFAULT_INT_HEX:
+    * (int *) def->location = ParseIntParameter(value);
+    break;
 
-        case DEFAULT_KEY:
+    case DEFAULT_KEY:
 
-            // translate scancodes read from config
-            // file (save the old value in untranslated)
+    // translate scancodes read from config
+    // file (save the old value in untranslated)
 
-            intparm = ParseIntParameter(value);
-            def->untranslated = intparm;
-            if (intparm >= 0 && intparm < 128)
-            {
-                intparm = scantokey[intparm];
-            }
-            else
-            {
-                intparm = 0;
-            }
-
-            def->original_translated = intparm;
-            * (int *) def->location = intparm;
-            break;
-
-        case DEFAULT_FLOAT:
-            * (float *) def->location = (float) atof(value);
-            break;
+    intparm = ParseIntParameter(value);
+    def->untranslated = intparm;
+    if (intparm >= 0 && intparm < 128)
+    {
+    intparm = scantokey[intparm];
     }
-}
+    else
+    {
+    intparm = 0;
+    }
 
+    def->original_translated = intparm;
+    * (int *) def->location = intparm;
+    break;
+
+    case DEFAULT_FLOAT:
+    * (float *) def->location = (float) atof(value);
+    break;
+    }
+    */
+}
 static void LoadDefaultCollection(default_collection_t *collection)
 {
 #if ORIGCODE

@@ -16,7 +16,8 @@
 //	WAD I/O functions.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "config.h"
 
@@ -62,6 +63,7 @@ wad_file_t *W_OpenFile(char *path)
 
     if (!M_CheckParm("-mmap"))
     {
+        printf("!M_CHeckParm(\"-mmap\")\n");
         return stdc_wad_file.OpenFile(path);
     }
 
@@ -71,6 +73,7 @@ wad_file_t *W_OpenFile(char *path)
 
     for (i = 0; i < arrlen(wad_file_classes); ++i)
     {
+        printf("Trying to open %s\n", path);
         result = wad_file_classes[i]->OpenFile(path);
 
         if (result != NULL)
@@ -90,6 +93,10 @@ void W_CloseFile(wad_file_t *wad)
 size_t W_Read(wad_file_t *wad, unsigned int offset,
               void *buffer, size_t buffer_len)
 {
+    /*printf("W_Read called to read wad file at 0x%X into buffer at 0x%X with length %d\n",
+           wad,
+           buffer,
+           buffer_len);*/
     return wad->file_class->Read(wad, offset, buffer, buffer_len);
 }
 

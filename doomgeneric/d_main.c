@@ -21,8 +21,9 @@
 
 
 #include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
+//#include <stdlib.h>
 #include <string.h>
 
 #include "config.h"
@@ -666,7 +667,7 @@ static char *GetGameName(char *gamename)
 
             while (gamename[0] != '\0' && isspace((int)gamename[0]))
             {
-                memmove(gamename, gamename + 1, gamename_size - 1);
+                //memmove(gamename, gamename + 1, gamename_size - 1);
             }
 
             while (gamename[0] != '\0' && isspace((int)gamename[strlen(gamename)-1]))
@@ -1363,10 +1364,12 @@ void D_DoomMain (void)
     // Find main IWAD file and load it.
     iwadfile = D_FindIWAD(IWAD_MASK_DOOM, &gamemission);
 
+    printf("\n\n\t----------------\n\n");
     // None found?
 
     if (iwadfile == NULL)
     {
+        printf("ddddddddddooooooooommmmm\n\n");
         I_Error("Game mode indeterminate.  No IWAD file was found.  Try\n"
                 "specifying one with the '-iwad' command line parameter.\n");
     }

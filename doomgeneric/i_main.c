@@ -18,7 +18,8 @@
 
 //#include "config.h"
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 //#include "doomtype.h"
 //#include "i_system.h"

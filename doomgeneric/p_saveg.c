@@ -17,8 +17,10 @@
 //
 
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 #include "dstrings.h"
 #include "deh_main.h"
@@ -86,7 +88,7 @@ static byte saveg_read8(void)
     {
         if (!savegame_error)
         {
-            fprintf(stderr, "saveg_read8: Unexpected end of file while "
+            printf(/*stderr,*/ "saveg_read8: Unexpected end of file while "
                             "reading save game\n");
 
             savegame_error = true;
@@ -98,15 +100,16 @@ static byte saveg_read8(void)
 
 static void saveg_write8(byte value)
 {
-    if (fwrite(&value, 1, 1, save_stream) < 1)
+    printf("\n\nsaveg_write8 called\n\n");
+    /*if (fwrite(&value, 1, 1, save_stream) < 1)
     {
         if (!savegame_error)
         {
-            fprintf(stderr, "saveg_write8: Error while writing save game\n");
+           // fprintf(stderr, "saveg_write8: Error while writing save game\n");
 
             savegame_error = true;
         }
-    }
+    }*/
 }
 
 static short saveg_read16(void)

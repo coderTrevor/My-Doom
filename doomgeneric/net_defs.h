@@ -18,7 +18,8 @@
 #ifndef NET_DEFS_H
 #define NET_DEFS_H 
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "doomtype.h"
 #include "d_ticcmd.h"

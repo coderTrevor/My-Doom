@@ -18,8 +18,10 @@
 //
 
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <string.h>
 #include <ctype.h>
 #include <errno.h>
@@ -52,13 +54,17 @@
 // Create a directory
 //
 
+
 void M_MakeDirectory(char *path)
 {
-#ifdef _WIN32
+    printf("\n\nM_MakeDirectory(%s) called\n\n", path);
+    /*
+    #ifdef _WIN32
     mkdir(path);
-#else
+    #else
     mkdir(path, 0755);
-#endif
+    #endif
+    */
 }
 
 // Check if a file exists
@@ -69,7 +75,7 @@ boolean M_FileExists(char *filename)
 
     fstream = fopen(filename, "r");
 
-    if (fstream != NULL)
+    if (fstream != -1)
     {
         fclose(fstream);
         return true;
@@ -79,7 +85,9 @@ boolean M_FileExists(char *filename)
         // If we can't open because the file is a directory, the 
         // "file" exists at least!
 
-        return errno == EISDIR;
+        //return errno == EISDIR;
+        printf("fstream was null\n");
+        return true;
     }
 }
 
@@ -99,6 +107,8 @@ long M_FileLength(FILE *handle)
     fseek(handle, 0, SEEK_END);
     length = ftell(handle);
 
+    printf("-- file length: %d\n", length);
+
     // go back to the old location
     fseek(handle, savedpos, SEEK_SET);
 
@@ -111,20 +121,22 @@ long M_FileLength(FILE *handle)
 
 boolean M_WriteFile(char *name, void *source, int length)
 {
+    printf("\n\nM_WriteFile(%s) called\n\n", name);
+    /*
     FILE *handle;
     int	count;
-	
+
     handle = fopen(name, "wb");
 
     if (handle == NULL)
-	return false;
+    return false;
 
     count = fwrite(source, 1, length, handle);
     fclose(handle);
-	
+
     if (count < length)
-	return false;
-		
+    return false;
+    */
     return true;
 }
 
@@ -166,9 +178,11 @@ int M_ReadFile(char *name, byte **buffer)
 
 char *M_TempFile(char *s)
 {
+    printf("\n\nM_TempFile(%s) called\n\n", s);
+    /*
     char *tempdir;
 
-#ifdef _WIN32
+    #ifdef _WIN32
 
     // Check the TEMP environment variable to find the location.
 
@@ -176,23 +190,27 @@ char *M_TempFile(char *s)
 
     if (tempdir == NULL)
     {
-        tempdir = ".";
+    tempdir = ".";
     }
-#else
+    #else
     // In Unix, just use /tmp.
 
     tempdir = "/tmp";
-#endif
+    #endif
 
-    return M_StringJoin(tempdir, DIR_SEPARATOR_S, s, NULL);
+    return M_StringJoin(tempdir, DIR_SEPARATOR_S, s, NULL);*/
+    return s;
 }
 
 boolean M_StrToInt(const char *str, int *result)
 {
-    return sscanf(str, " 0x%x", result) == 1
+    // seems like this doesn't get used
+    printf("\n\n\t\tM_StrToInt( %s ) called\n\n\n", str);
+    return true;
+    /*return sscanf(str, " 0x%x", result) == 1
         || sscanf(str, " 0X%x", result) == 1
         || sscanf(str, " 0%o", result) == 1
-        || sscanf(str, " %d", result) == 1;
+        || sscanf(str, " %d", result) == 1;*/
 }
 
 void M_ExtractFileBase(char *path, char *dest)
@@ -311,6 +329,8 @@ char *M_StringDuplicate(const char *orig)
 char *M_StringReplace(const char *haystack, const char *needle,
                       const char *replacement)
 {
+    printf("\n\nM_StringReplace called\n\n");
+    /*
     char *result, *dst;
     const char *p;
     size_t needle_len = strlen(needle);
@@ -323,14 +343,14 @@ char *M_StringReplace(const char *haystack, const char *needle,
 
     for (;;)
     {
-        p = strstr(p, needle);
-        if (p == NULL)
-        {
-            break;
-        }
+    p = strstr(p, needle);
+    if (p == NULL)
+    {
+    break;
+    }
 
-        p += needle_len;
-        result_len += strlen(replacement) - needle_len;
+    p += needle_len;
+    result_len += strlen(replacement) - needle_len;
     }
 
     // Construct new string.
@@ -338,8 +358,8 @@ char *M_StringReplace(const char *haystack, const char *needle,
     result = malloc(result_len);
     if (result == NULL)
     {
-        I_Error("M_StringReplace: Failed to allocate new string");
-        return NULL;
+    I_Error("M_StringReplace: Failed to allocate new string");
+    return NULL;
     }
 
     dst = result; dst_len = result_len;
@@ -347,24 +367,25 @@ char *M_StringReplace(const char *haystack, const char *needle,
 
     while (*p != '\0')
     {
-        if (!strncmp(p, needle, needle_len))
-        {
-            M_StringCopy(dst, replacement, dst_len);
-            p += needle_len;
-            dst += strlen(replacement);
-            dst_len -= strlen(replacement);
-        }
-        else
-        {
-            *dst = *p;
-            ++dst; --dst_len;
-            ++p;
-        }
+    if (!strncmp(p, needle, needle_len))
+    {
+    M_StringCopy(dst, replacement, dst_len);
+    p += needle_len;
+    dst += strlen(replacement);
+    dst_len -= strlen(replacement);
+    }
+    else
+    {
+    *dst = *p;
+    ++dst; --dst_len;
+    ++p;
+    }
     }
 
     *dst = '\0';
 
-    return result;
+    return result;*/
+    return haystack;
 }
 
 // Safe string copy function that works like OpenBSD's strlcpy().

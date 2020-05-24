@@ -20,11 +20,13 @@
 
 
 #include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 
+#undef _WIN32
 #include "doomtype.h"
+#include "doomgeneric.h"
 
 #include "config.h"
 #include "d_iwad.h"
@@ -86,6 +88,7 @@ unsigned int W_LumpNameHash(const char *s)
 // Increase the size of the lumpinfo[] array to the specified size.
 static void ExtendLumpInfo(int newnumlumps)
 {
+    printf("Extending lumpinfo[]\n");
     lumpinfo_t *newlumpinfo;
     unsigned int i;
 
@@ -152,11 +155,14 @@ wad_file_t *W_AddFile (char *filename)
 
     wad_file = W_OpenFile(filename);
 
+    // TODO: FIx
     if (wad_file == NULL)
     {
 		printf (" couldn't open %s\n", filename);
 		return NULL;
     }
+
+    printf("\n\n------file opened.\n\n");
 
     newnumlumps = numlumps;
 
@@ -181,6 +187,7 @@ wad_file_t *W_AddFile (char *filename)
     }
     else 
     {
+        printf("Reading wad file\n");
     	// WAD file
         W_Read(wad_file, 0, &header, sizeof(header));
 
@@ -197,6 +204,7 @@ wad_file_t *W_AddFile (char *filename)
 		}
 
 		header.numlumps = LONG(header.numlumps);
+        printf("has %d lumps\n", header.numlumps);
 		header.infotableofs = LONG(header.infotableofs);
 		length = header.numlumps*sizeof(filelump_t);
 		fileinfo = Z_Malloc(length, PU_STATIC, 0);
@@ -253,7 +261,7 @@ int W_NumLumps (void)
 // Returns -1 if name not found.
 //
 
-int W_CheckNumForName (char* name)
+int W_CheckNumForName(char* name)
 {
     lumpinfo_t *lump_p;
     int i;
@@ -263,31 +271,45 @@ int W_CheckNumForName (char* name)
     if (lumphash != NULL)
     {
         int hash;
-        
+
         // We do! Excellent.
 
         hash = W_LumpNameHash(name) % numlumps;
-        
+
         for (lump_p = lumphash[hash]; lump_p != NULL; lump_p = lump_p->next)
         {
             if (!strncasecmp(lump_p->name, name, 8))
             {
+                if (!strncmp(name, "STTNUM", 6))
+                    printf("STTNUM - lump_p->name: %s is a match for %s\n", lump_p->name, name);
+                
+                if (!strncmp(name, "STYSNUM", 7))
+                    printf("STYSNUM - lump_p->name: %s is a match for %s\n", lump_p->name, name);
                 return lump_p - lumpinfo;
             }
+            //if (strncmp(name, "STGNUM", 6))
+            //    printf("STGNUM - lump_p->name: %s not a match for %s\n", lump_p->name, name);
         }
-    } 
+    }
     else
     {
         // We don't have a hash table generate yet. Linear search :-(
         // 
         // scan backwards so patch lump files take precedence
 
-        for (i=numlumps-1; i >= 0; --i)
+        for (i = numlumps - 1; i >= 0; --i)
         {
             if (!strncasecmp(lumpinfo[i].name, name, 8))
             {
+                if (!strncmp(name, "STTNUM", 6))
+                    printf("NH - STTNUM - lump_p->name: %s is a match for %s\n", lumpinfo[i].name, name);
+                if (!strncmp(name, "STYSNUM", 7))
+                    printf("NH - STYSNUM - lump_p->name: %s is a match for %s\n", lumpinfo[i].name, name);
                 return i;
             }
+
+            //if (strncmp(name, "STGNUM", 6))
+            //   printf("NH - STGNUM - lump_p->name: %s is not a match for %s\n", lumpinfo[i].name, name);
         }
     }
 
@@ -311,6 +333,7 @@ int W_GetNumForName (char* name)
 
     if (i < 0)
     {
+        printf("W_GetNumForName: %s not found!\n", name);
         I_Error ("W_GetNumForName: %s not found!", name);
     }
  

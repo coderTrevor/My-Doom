@@ -16,7 +16,8 @@
 // SDL implementation of the Hexen CD interface.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #ifdef ORIGCODE
 #include "SDL.h"

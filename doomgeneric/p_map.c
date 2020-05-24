@@ -17,8 +17,10 @@
 //	Shooting and aiming.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 #include "deh_misc.h"
 
@@ -1439,7 +1441,7 @@ static void SpechitOverrun(line_t *ld)
             nofit = addr; 
             break;
         default:
-            fprintf(stderr, "SpechitOverrun: Warning: unable to emulate"
+            printf(/*stderr,*/ "SpechitOverrun: Warning: unable to emulate"
                             "an overrun where numspechit=%i\n",
                             numspechit);
             break;

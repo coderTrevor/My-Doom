@@ -14,12 +14,13 @@
 //
 
 
-#include <stdlib.h>
+#include "doomgeneric.h"
+/*#include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
 #include <fcntl.h>
-#include <stdio.h>
+#include <stdio.h>*/
 
 #include "config.h"
 #include "deh_str.h"
@@ -29,7 +30,7 @@
 #include "i_system.h"
 #include "i_swap.h"
 #include "i_timer.h"
-#include "i_video.h"
+/*#include "i_video.h"
 #include "i_scale.h"
 #include "m_argv.h"
 #include "m_config.h"
@@ -38,8 +39,7 @@
 #include "v_video.h"
 #include "w_wad.h"
 #include "z_zone.h"
-
-#include "doomgeneric.h"
+*/
 
 int vanilla_keyboard_mapping = 1;
 

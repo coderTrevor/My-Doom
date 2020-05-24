@@ -16,7 +16,8 @@
 //	WAD I/O functions.
 //
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 #include "m_misc.h"
 #include "w_file.h"
@@ -35,9 +36,11 @@ static wad_file_t *W_StdC_OpenFile(char *path)
     stdc_wad_file_t *result;
     FILE *fstream;
 
+    printf("W_StdC_OpenFile(%s)\n", path);
     fstream = fopen(path, "rb");
 
-    if (fstream == NULL)
+    // TODO fix
+    if (fstream == -1)
     {
         return NULL;
     }

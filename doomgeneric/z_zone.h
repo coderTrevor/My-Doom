@@ -24,7 +24,8 @@
 #ifndef __Z_ZONE__
 #define __Z_ZONE__
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "doomgeneric.h"
 
 //
 // ZONE MEMORY

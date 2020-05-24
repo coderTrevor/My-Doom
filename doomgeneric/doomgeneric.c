@@ -10,3 +10,25 @@ void dg_Create()
 	DG_Init();
 }
 
+/*void fprintf(FILE *file, char *str)
+{
+    printf("fprintf(%s) called\n", str);
+}*/
+
+void putchar(char c)
+{
+    printf("%c", c);
+}
+
+void puts(char *str)
+{
+    printf("%s\n", str);
+}
+
+int isspace(int c)
+{
+    if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\r' || c == '\f')
+        return 1;
+
+    return 0;
+}

@@ -16,7 +16,9 @@
 //     Main loop code.
 //
 
-#include <stdlib.h>
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 #include <string.h>
 
 #include "doomfeatures.h"

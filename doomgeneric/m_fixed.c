@@ -18,7 +18,9 @@
 
 
 
-#include "stdlib.h"
+//#include <stdlib.h>
+#include "doomgeneric.h"
+
 
 #include "doomtype.h"
 #include "i_system.h"
@@ -58,5 +60,14 @@ fixed_t FixedDiv(fixed_t a, fixed_t b)
 
 	return (fixed_t) result;
     }
+}
+
+// Is this right? Who knows. Not me.
+fixed_t abs(fixed_t a)
+{
+    if (a < 0)
+        a = -a;
+
+    return a;
 }
 
