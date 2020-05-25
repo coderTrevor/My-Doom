@@ -233,7 +233,7 @@ STlib_updateMultIcon
 	        V_CopyRect(x, y-ST_Y, st_backing_screen, w, h, x, y);
 	    }
         //printf("STlib_updateMultIcon going to drawPatch\n");
-        printf("DP %d, %d, %d\n", mi->x, mi->y, *mi->inum);
+        //printf("DP %d, %d, %d\n", mi->x, mi->y, *mi->inum);
 	    V_DrawPatch(mi->x, mi->y, mi->p[*mi->inum]);
 	    mi->oldinum = *mi->inum;
     }

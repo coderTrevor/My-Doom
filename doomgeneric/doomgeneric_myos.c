@@ -1,4 +1,4 @@
-//doomgeneric for soso os
+//doomgeneric for My OS
 
 #include "doomkeys.h"
 #include "m_argv.h"
@@ -163,21 +163,20 @@ void DG_Init()
 
 static void handleKeyInput()
 {
-    printf("handleKeyInput()\n");
-    /*if (KeyboardFd < 0)
-    {
-        return;
-    }
+    //printf("handleKeyInput()\n");
+    uint16_t sc = 0;
+    unsigned char scancode;
 
-    unsigned char scancode = 0;
-
-    if (read(KeyboardFd, &scancode, 1) > 0)
+    while(readFromKeyboard(&sc))
     {
+        scancode = sc & 0xff;
+
         unsigned char keyRelease = (0x80 & scancode);
 
         scancode = (0x7F & scancode);
 
         //printf("scancode:%x pressed:%d\n", scancode, 0 == keyRelease);
+        //timeDelayMS(200);
 
         if (0 == keyRelease)
         {
@@ -187,13 +186,14 @@ static void handleKeyInput()
         {
             addKeyToQueue(0, scancode);
         }
-    }*/
+    }
 }
 
 void DG_DrawFrame()
 {
     //GraphicsBlit(0, 0, DG_ScreenBuffer, DOOMGENERIC_RESX, DOOMGENERIC_RESY);
     graphicsBlit(&frameBufferInfo, DG_ScreenBuffer);
+    handleKeyInput();
     //timeDelayMS(10000);
 
     //printf(".");
@@ -209,7 +209,7 @@ void DG_DrawFrame()
         }
     }
 
-    handleKeyInput();*/
+    */
 }
 
 void DG_SleepMs(uint32_t ms)
@@ -226,8 +226,7 @@ uint32_t DG_GetTicksMs()
 
 int DG_GetKey(int* pressed, unsigned char* doomKey)
 {
-    return 0;
-    /*if (s_KeyQueueReadIndex == s_KeyQueueWriteIndex)
+    if (s_KeyQueueReadIndex == s_KeyQueueWriteIndex)
     {
         //key queue is empty
 
@@ -243,7 +242,7 @@ int DG_GetKey(int* pressed, unsigned char* doomKey)
         *doomKey = keyData & 0xFF;
 
         return 1;
-    }*/
+    }
 }
 
 void DG_SetWindowTitle(const char * title)
