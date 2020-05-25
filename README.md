@@ -7,6 +7,6 @@ Nearly every bug that MyOS has (like fopen returning NULL) was hastily worked ar
 
 MyOS doesn't like it when the game looks for every possible .wad file, so this port only looks for "doom.wad." You can rename the shareware version from doom1.wad to doom.wad and it will work.
 
-As of the first commit, keyboard input hasn't been implemented, the game just runs and shows demos.
+The game can be run and played, but you can't save your game.
 
 There's a bug somewhere that causes the game to crash when updating the arms display; I've kept the display from getting updated for now.
