@@ -214,7 +214,7 @@ void DG_DrawFrame()
 
 void DG_SleepMs(uint32_t ms)
 {
-    //timeDelayMS(ms);
+    timeDelayMS(ms);
 }
 
 //uint32_t faketicks = 0;
